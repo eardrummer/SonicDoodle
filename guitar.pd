@@ -1,0 +1,49 @@
+#N canvas 276 130 763 451 10;
+#X obj 235 117 hsl 180 15 1 40 0 0 empty \$0-width_ctrl width -2 -8
+1 10 -262144 -1 -1 0 1;
+#X obj 234 148 hsl 180 15 0.9 0.999 0 0 empty \$0-decay_ctrl decay
+-2 -8 1 10 -262144 -1 -1 0 1;
+#X obj 234 178 hsl 180 15 100 8000 0 0 empty \$0-cutoff_ctrl cutoff
+-2 -8 1 10 -262144 -1 -1 0 1;
+#N canvas 319 134 847 508 plucked_instrument 0;
+#X obj 22 63 inlet;
+#X obj 473 65 inlet;
+#X obj 515 65 inlet;
+#X obj 557 65 inlet;
+#X text 469 46 Width \, decay \, and cutoff inlets;
+#X obj 21 165 karpluck~;
+#X obj 21 373 outlet~;
+#X obj 21 349 *~ 0.25;
+#X obj 473 128 s \$0-width;
+#X obj 516 107 s \$0-decay;
+#X obj 557 87 s \$0-cutoff;
+#X obj 106 87 r \$0-width;
+#X obj 188 89 r \$0-decay;
+#X obj 264 90 r \$0-cutoff;
+#X text 334 112 comment;
+#X text 73 343 scale the output down by approx 12dB to avoid clipping
+;
+#X text 17 16 6 inlets representing the six strings of our instrument.
+A midi note integer message to any inlet excites that particular string
+at the specified pitch.;
+#X connect 0 0 5 0;
+#X connect 1 0 8 0;
+#X connect 2 0 9 0;
+#X connect 3 0 10 0;
+#X connect 5 0 7 0;
+#X connect 7 0 6 0;
+#X connect 11 0 5 1;
+#X connect 12 0 5 2;
+#X connect 13 0 5 3;
+#X restore 68 211 pd plucked_instrument;
+#X text 236 248 Colin Barry / colin@loomer.co.uk;
+#X text 238 263 www.loomer.co.uk;
+#X obj 83 83 inlet;
+#X obj 53 275 outlet~;
+#X floatatom 110 138 5 0 0 0 - - -;
+#X connect 0 0 3 1;
+#X connect 1 0 3 2;
+#X connect 2 0 3 3;
+#X connect 3 0 7 0;
+#X connect 6 0 3 0;
+#X connect 6 0 8 0;
